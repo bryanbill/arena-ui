@@ -1,19 +1,21 @@
-import { useRef, useCallback, useEffect } from 'react';
-import { isEqual } from 'lodash';
-
-import api from 'shared/utils/api';
-import useMergeState from 'shared/hooks/mergeState';
-import useDeepCompareMemoize from 'shared/hooks/deepCompareMemoize';
+import { useRef, useCallback, useEffect } from "react";
+import { isEqual } from "lodash";
+import api from ".";
+import useDeepCompareMemoize from "../deepCompareMemoize";
+import useMergeState from "../mergeState";
 
 const useQuery = (url, propsVariables = {}, options = {}) => {
-  const { lazy = false, cachePolicy = 'cache-first' } = options;
+  //@ts-ignore
+  const { lazy = false, cachePolicy = "cache-first" } = options;
 
   const wasCalled = useRef(false);
   const propsVariablesMemoized = useDeepCompareMemoize(propsVariables);
 
   const isSleeping = lazy && !wasCalled.current;
-  const isCacheAvailable = cache[url] && isEqual(cache[url].apiVariables, propsVariables);
-  const canUseCache = isCacheAvailable && cachePolicy !== 'no-cache' && !wasCalled.current;
+  const isCacheAvailable =
+    cache[url] && isEqual(cache[url].apiVariables, propsVariables);
+  const canUseCache =
+    isCacheAvailable && cachePolicy !== "no-cache" && !wasCalled.current;
 
   const [state, mergeState] = useMergeState({
     data: canUseCache ? cache[url].data : null,
@@ -23,55 +25,58 @@ const useQuery = (url, propsVariables = {}, options = {}) => {
   });
 
   const makeRequest = useCallback(
-    newVariables => {
+    (newVariables) => {
       const variables = { ...state.variables, ...(newVariables || {}) };
+      //@ts-ignore
       const apiVariables = { ...propsVariablesMemoized, ...variables };
 
-      const skipLoading = canUseCache && cachePolicy === 'cache-first';
+      const skipLoading = canUseCache && cachePolicy === "cache-first";
 
       if (!skipLoading) {
         mergeState({ isLoading: true, variables });
       } else if (newVariables) {
         mergeState({ variables });
       }
-
+      //@ts-ignore
       api.get(url, apiVariables).then(
-        data => {
+        (data) => {
           cache[url] = { data, apiVariables };
           mergeState({ data, error: null, isLoading: false });
         },
-        error => {
+        (error) => {
           mergeState({ error, data: null, isLoading: false });
-        },
+        }
       );
 
       wasCalled.current = true;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [propsVariablesMemoized],
+    [propsVariablesMemoized]
   );
 
   useEffect(() => {
     if (isSleeping) return;
-    if (canUseCache && cachePolicy === 'cache-only') return;
+    if (canUseCache && cachePolicy === "cache-only") return;
 
+    //@ts-ignore
     makeRequest();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [makeRequest]);
 
   const setLocalData = useCallback(
-    getUpdatedData =>
+    (getUpdatedData) =>
       mergeState(({ data }) => {
         const updatedData = getUpdatedData(data);
         cache[url] = { ...(cache[url] || {}), data: updatedData };
         return { data: updatedData };
       }),
-    [mergeState, url],
+    [mergeState, url]
   );
 
   return [
     {
       ...state,
+      //@ts-ignore
       variables: { ...propsVariablesMemoized, ...state.variables },
       setLocalData,
     },

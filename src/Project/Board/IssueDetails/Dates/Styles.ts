@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-
-import { color, font } from 'shared/utils/styles';
+import styled from "styled-components";
+import { color, font } from "../../../../shared/utils/styles";
 
 export const Dates = styled.div`
   margin-top: 11px;

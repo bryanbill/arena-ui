@@ -1,13 +1,16 @@
-import styled from 'styled-components';
-
-import { zIndexValues, mixin } from 'shared/utils/styles';
+import { mixin } from "lodash";
+import styled from "styled-components";
+import { zIndexValues } from "../../utils/styles";
 
 export const StyledTooltip = styled.div`
   z-index: ${zIndexValues.modal + 1};
   position: fixed;
-  width: ${props => props.width}px;
+  width: ${//@ts-ignore
+  (props) => props.width}px;
   border-radius: 3px;
   background: #fff;
-  ${mixin.hardwareAccelerate}
-  ${mixin.boxShadowDropdown}
+  ${//@ts-ignore
+  mixin.hardwareAccelerate}
+  ${//@ts-ignore
+  mixin.boxShadowDropdown}
 `;

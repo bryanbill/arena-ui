@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components';
-
-import { color, font } from 'shared/utils/styles';
+import styled, { css } from "styled-components";
+import { color, font } from "../../utils/styles";
 
 export const StyledTextarea = styled.div`
   display: inline-block;
@@ -20,7 +19,8 @@ export const StyledTextarea = styled.div`
       border: 1px solid ${color.borderInputFocus};
       box-shadow: 0 0 0 1px ${color.borderInputFocus};
     }
-    ${props =>
+    ${(props) =>
+      //@ts-ignore
       props.invalid &&
       css`
         &,

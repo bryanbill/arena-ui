@@ -1,10 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import api from 'shared/utils/api';
-import toast from 'shared/utils/toast';
-import { formatDateTimeConversational } from 'shared/utils/dateTime';
-import { ConfirmModal } from 'shared/components';
 
 import BodyForm from '../BodyForm';
 import {
@@ -17,6 +13,10 @@ import {
   EditLink,
   DeleteLink,
 } from './Styles';
+import toast from '../../../../../shared/utils/toast';
+import { ConfirmModal } from '../../../../../shared/components';
+import api from '../../../../../shared/hooks/api';
+import { formatDateTimeConversational } from '../../../../../shared/utils/dateTime';
 
 const propTypes = {
   comment: PropTypes.object.isRequired,

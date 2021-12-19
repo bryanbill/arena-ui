@@ -1,8 +1,8 @@
-import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import TextareaAutoSize from 'react-textarea-autosize';
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
+import TextareaAutoSize from "react-textarea-autosize";
 
-import { StyledTextarea } from './Styles';
+import { StyledTextarea } from "./Styles";
 
 const propTypes = {
   className: PropTypes.string,
@@ -20,17 +20,22 @@ const defaultProps = {
   onChange: () => {},
 };
 
-const Textarea = forwardRef(({ className, invalid, onChange, ...textareaProps }, ref) => (
-  <StyledTextarea className={className} invalid={invalid}>
-    <TextareaAutoSize
-      {...textareaProps}
-      onChange={event => onChange(event.target.value, event)}
-      inputRef={ref || undefined}
-    />
-  </StyledTextarea>
-));
-
+const Textarea = forwardRef(
+  //@ts-ignore
+  ({ className, invalid, onChange, ...textareaProps }, ref) => (
+    //@ts-ignore
+    <StyledTextarea className={className} invalid={invalid}>
+      <TextareaAutoSize
+        {...textareaProps}
+        onChange={(event) => onChange(event.target.value, event)}
+        inputRef={ref || undefined}
+      />
+    </StyledTextarea>
+  )
+);
+//@ts-ignore
 Textarea.propTypes = propTypes;
+//@ts-ignore
 Textarea.defaultProps = defaultProps;
 
 export default Textarea;

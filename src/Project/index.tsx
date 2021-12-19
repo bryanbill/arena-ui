@@ -1,10 +1,6 @@
 import React from 'react';
 import { Route, Redirect, useRouteMatch, useHistory } from 'react-router-dom';
 
-import useApi from 'shared/hooks/api';
-import { updateArrayItemById } from 'shared/utils/javascript';
-import { createQueryParamModalHelpers } from 'shared/utils/queryParamModal';
-import { PageLoader, PageError, Modal } from 'shared/components';
 
 import NavbarLeft from './NavbarLeft';
 import Sidebar from './Sidebar';
@@ -13,6 +9,9 @@ import IssueSearch from './IssueSearch';
 import IssueCreate from './IssueCreate';
 import ProjectSettings from './ProjectSettings';
 import { ProjectPage } from './Styles';
+import { PageLoader, PageError, Modal } from '../shared/components';
+import { updateArrayItemById } from '../shared/utils/javascript';
+import { createQueryParamModalHelpers } from '../shared/utils/queryParamModal';
 
 const Project = () => {
   const match = useRouteMatch();

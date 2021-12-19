@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { sortByNewest } from 'shared/utils/javascript';
 
 import Create from './Create';
 import Comment from './Comment';
 import { Comments, Title } from './Styles';
+import { sortByNewest } from '../../../../shared/utils/javascript';
 
 const propTypes = {
   issue: PropTypes.object.isRequired,

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatDateTimeConversational } from 'shared/utils/dateTime';
 
 import { Dates } from './Styles';
+import { formatDateTimeConversational } from '../../../../shared/utils/dateTime';
 
 const propTypes = {
   issue: PropTypes.object.isRequired,

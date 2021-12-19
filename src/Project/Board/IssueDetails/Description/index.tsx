@@ -1,10 +1,13 @@
-import React, { Fragment, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, useState } from "react";
+import PropTypes from "prop-types";
 
-import { getTextContentsFromHtmlString } from 'shared/utils/browser';
-import { TextEditor, TextEditedContent, Button } from 'shared/components';
-
-import { Title, EmptyLabel, Actions } from './Styles';
+import { Title, EmptyLabel, Actions } from "./Styles";
+import {
+  Button,
+  TextEditedContent,
+  TextEditor,
+} from "../../../../shared/components";
+import { getTextContentsFromHtmlString } from "../../../../shared/utils/browser";
 
 const propTypes = {
   issue: PropTypes.object.isRequired,
@@ -20,7 +23,8 @@ const ProjectBoardIssueDetailsDescription = ({ issue, updateIssue }) => {
     updateIssue({ description });
   };
 
-  const isDescriptionEmpty = getTextContentsFromHtmlString(description).trim().length === 0;
+  const isDescriptionEmpty =
+    getTextContentsFromHtmlString(description).trim().length === 0;
 
   return (
     <Fragment>
@@ -33,9 +37,11 @@ const ProjectBoardIssueDetailsDescription = ({ issue, updateIssue }) => {
             onChange={setDescription}
           />
           <Actions>
+            {/* @ts-ignore */}
             <Button variant="primary" onClick={handleUpdate}>
               Save
             </Button>
+            {/* @ts-ignore */}
             <Button variant="empty" onClick={() => setEditing(false)}>
               Cancel
             </Button>
@@ -44,9 +50,14 @@ const ProjectBoardIssueDetailsDescription = ({ issue, updateIssue }) => {
       ) : (
         <Fragment>
           {isDescriptionEmpty ? (
-            <EmptyLabel onClick={() => setEditing(true)}>Add a description...</EmptyLabel>
+            <EmptyLabel onClick={() => setEditing(true)}>
+              Add a description...
+            </EmptyLabel>
           ) : (
-            <TextEditedContent content={description} onClick={() => setEditing(true)} />
+            <TextEditedContent
+              content={description}
+              onClick={() => setEditing(true)}
+            />
           )}
         </Fragment>
       )}

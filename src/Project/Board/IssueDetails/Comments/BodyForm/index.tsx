@@ -1,8 +1,8 @@
-import React, { Fragment, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, useRef } from "react";
+import PropTypes from "prop-types";
 
-import { Actions, FormButton } from './Styles';
-import { Textarea } from '../../../../../shared/components';
+import { Actions, FormButton } from "./Styles";
+import { Textarea } from "../../../../../shared/components";
 
 const propTypes = {
   value: PropTypes.string.isRequired,
@@ -22,6 +22,7 @@ const ProjectBoardIssueDetailsCommentsBodyForm = ({
   const $textareaRef = useRef();
 
   const handleSubmit = () => {
+    // @ts-ignore
     if ($textareaRef.current.value.trim()) {
       onSubmit();
     }
@@ -30,6 +31,7 @@ const ProjectBoardIssueDetailsCommentsBodyForm = ({
   return (
     <Fragment>
       <Textarea
+        // @ts-ignore
         autoFocus
         placeholder="Add a comment..."
         value={value}
@@ -37,9 +39,15 @@ const ProjectBoardIssueDetailsCommentsBodyForm = ({
         ref={$textareaRef}
       />
       <Actions>
-        <FormButton variant="primary" isWorking={isWorking} onClick={handleSubmit}>
+        {/* @ts-ignore */}
+        <FormButton
+          variant="primary"
+          isWorking={isWorking}
+          onClick={handleSubmit}
+        >
           Save
         </FormButton>
+        {/* @ts-ignore */}
         <FormButton variant="empty" onClick={onCancel}>
           Cancel
         </FormButton>

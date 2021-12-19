@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-
-import { color, mixin, zIndexValues } from 'shared/utils/styles';
-import Icon from 'shared/components/Icon';
+import { mixin } from "lodash";
+import styled, { css } from "styled-components";
+import { Icon } from "..";
+import { zIndexValues, color } from "../../utils/styles";
 
 export const ScrollOverlay = styled.div`
   z-index: ${zIndexValues.modal};
@@ -10,13 +10,15 @@ export const ScrollOverlay = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  ${mixin.scrollableY}
+  ${//@ts-ignore
+  mixin.scrollableY}
 `;
 
 export const ClickableOverlay = styled.div`
   min-height: 100%;
   background: rgba(9, 30, 66, 0.54);
-  ${props => clickOverlayStyles[props.variant]}
+  ${//@ts-ignore
+  (props) => clickOverlayStyles[props.variant]}
 `;
 
 const clickOverlayStyles = {
@@ -26,7 +28,7 @@ const clickOverlayStyles = {
     align-items: center;
     padding: 50px;
   `,
-  aside: '',
+  aside: "",
 };
 
 export const StyledModal = styled.div`
@@ -34,19 +36,23 @@ export const StyledModal = styled.div`
   position: relative;
   width: 100%;
   background: #fff;
-  ${props => modalStyles[props.variant]}
+  ${//@ts-ignore
+  (props) => modalStyles[props.variant]}
 `;
 
 const modalStyles = {
   center: css`
-    max-width: ${props => props.width}px;
+    max-width: ${//@ts-ignore
+    (props) => props.width}px;
     vertical-align: middle;
     border-radius: 3px;
-    ${mixin.boxShadowMedium}
+    ${//@ts-ignore
+    mixin.boxShadowMedium}
   `,
   aside: css`
     min-height: 100vh;
-    max-width: ${props => props.width}px;
+    max-width: ${//@ts-ignore
+    (props) => props.width}px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
   `,
 };
@@ -56,8 +62,9 @@ export const CloseIcon = styled(Icon)`
   font-size: 25px;
   color: ${color.textMedium};
   transition: all 0.1s;
-  ${mixin.clickable}
-  ${props => closeIconStyles[props.variant]}
+  ${//@ts-ignore
+  mixin.clickable}
+  ${(props) => closeIconStyles[props.variant]}
 `;
 
 const closeIconStyles = {
@@ -80,7 +87,8 @@ const closeIconStyles = {
     text-align: center;
     background: #fff;
     border: 1px solid ${color.borderLightest};
-    ${mixin.boxShadowMedium};
+    ${//@ts-ignore
+    mixin.boxShadowMedium};
     &:hover {
       color: ${color.primary};
     }

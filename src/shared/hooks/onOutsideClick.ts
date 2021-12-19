@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
+import useDeepCompareMemoize from './deepCompareMemoize';
 
-import useDeepCompareMemoize from 'shared/hooks/deepCompareMemoize';
 
 const useOnOutsideClick = (
   $ignoredElementRefs,
   isListening,
   onOutsideClick,
-  $listeningElementRef,
+  $listeningElementRef?,
 ) => {
   const $mouseDownTargetRef = useRef();
   const $ignoredElementRefsMemoized = useDeepCompareMemoize([$ignoredElementRefs].flat());
@@ -17,6 +17,7 @@ const useOnOutsideClick = (
     };
 
     const handleMouseUp = event => {
+      //@ts-ignore
       const isAnyIgnoredElementAncestorOfTarget = $ignoredElementRefsMemoized.some(
         $elementRef =>
           $elementRef.current.contains($mouseDownTargetRef.current) ||

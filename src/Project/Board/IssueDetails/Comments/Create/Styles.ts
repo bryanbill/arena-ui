@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-
-import { color, font, mixin } from 'shared/utils/styles';
-import { Avatar } from 'shared/components';
+import { mixin } from "lodash";
+import styled from "styled-components";
+import { Avatar } from "../../../../../shared/components";
+import { font, color } from "../../../../../shared/utils/styles";
 
 export const Create = styled.div`
   position: relative;
@@ -24,7 +24,8 @@ export const FakeTextarea = styled.div`
   border-radius: 4px;
   border: 1px solid ${color.borderLightest};
   color: ${color.textLight};
-  ${mixin.clickable}
+  ${//@ts-ignore
+  mixin.clickable}
   &:hover {
     border: 1px solid ${color.borderLight};
   }

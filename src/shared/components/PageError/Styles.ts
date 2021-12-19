@@ -1,9 +1,7 @@
-import styled from 'styled-components';
-
-import { color, font, mixin } from 'shared/utils/styles';
-import { Icon } from 'shared/components';
-
-import imageBackground from './assets/background-forest.jpg';
+import { mixin } from "lodash";
+import styled from "styled-components";
+import { Icon } from "..";
+import { color, font } from "../../utils/styles";
 
 export const ErrorPage = styled.div`
   padding: 64px;
@@ -13,7 +11,8 @@ export const ErrorPageInner = styled.div`
   margin: 0 auto;
   max-width: 1440px;
   padding: 200px 0;
-  ${mixin.backgroundImage(imageBackground)}
+  ${//@ts-ignore
+  mixin.backgroundImage("./assets/bac*.jpg")}
   @media (max-height: 680px) {
     padding: 140px 0;
   }

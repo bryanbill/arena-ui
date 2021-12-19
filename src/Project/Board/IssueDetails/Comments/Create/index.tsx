@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import api from 'shared/utils/api';
-import useCurrentUser from 'shared/hooks/currentUser';
-import toast from 'shared/utils/toast';
 
 import BodyForm from '../BodyForm';
 import ProTip from './ProTip';
 import { Create, UserAvatar, Right, FakeTextarea } from './Styles';
+import api from '../../../../../shared/hooks/api';
+import useCurrentUser from '../../../../../shared/hooks/currentUser';
+import toast from '../../../../../shared/utils/toast';
 
 const propTypes = {
   issueId: PropTypes.number.isRequired,

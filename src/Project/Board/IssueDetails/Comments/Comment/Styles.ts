@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-
-import { color, font, mixin } from 'shared/utils/styles';
-import { Avatar } from 'shared/components';
+import { mixin } from "lodash";
+import styled, { css } from "styled-components";
+import { Avatar } from "../../../../../shared/components";
+import { font, color } from "../../../../../shared/utils/styles";
 
 export const Comment = styled.div`
   position: relative;
@@ -44,7 +44,8 @@ const actionLinkStyles = css`
   padding: 2px 0;
   color: ${color.textMedium};
   ${font.size(14.5)}
-  ${mixin.clickable}
+  ${//@ts-ignore
+  mixin.clickable}
   &:hover {
     text-decoration: underline;
   }
@@ -60,7 +61,7 @@ export const DeleteLink = styled.div`
   &:before {
     position: relative;
     right: 6px;
-    content: '·';
+    content: "·";
     display: inline-block;
   }
 `;
